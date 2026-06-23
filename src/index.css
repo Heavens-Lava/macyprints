@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Signature: text filled with horizontal FDM print layers + hard extrusion shadow */
+  .layered-text {
+    background: repeating-linear-gradient(0deg, #ff5436 0 4px, #ff7a5c 4px 8px);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(3px 3px 0 #18130f);
+  }
+  .layered-text--blue {
+    background: repeating-linear-gradient(0deg, #2d5bff 0 4px, #5a80ff 4px 8px);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  /* Signature divider: a strip of print layers */
+  .layer-divider {
+    height: 16px;
+    background: repeating-linear-gradient(0deg, #18130f 0 3px, transparent 3px 8px);
+    opacity: 0.16;
+  }
+}

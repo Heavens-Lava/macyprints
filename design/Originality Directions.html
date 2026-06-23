@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MACYPRINTS — originality directions</title>
+
+<!--
+  COMPARISON CANVAS — 3 ways to push MACYPRINTS past generic neo-brutalism.
+  Same brand colors + layer-line/nozzle DNA in all three; the lever that
+  changes is TYPOGRAPHY + one signature device (mascot / riso / extruded type).
+  Mascot is a concept sketch (clean geometric SVG), not final art.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Darker+Grotesque:wght@600;700;800;900&family=Anton&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#FFF6E9; --ink:#18130F; --coral:#FF5436; --coral-2:#FF7A5C;
+    --blue:#2D5BFF; --yellow:#FFC93C; --lime:#8CE563; --pink:#FF7DB0;
+    --border:3px solid var(--ink); --shadow:6px 6px 0 var(--ink);
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#EDE7DC; color:var(--ink); font-family:"DM Sans",system-ui,sans-serif; }
+  .label-bar{ background:var(--ink); color:var(--paper); font-family:"Space Mono",monospace; font-size:.8rem;
+    letter-spacing:.1em; padding:14px 28px; display:flex; gap:14px; align-items:baseline; }
+  .label-bar b{ color:var(--yellow); font-size:.95rem; }
+  .variant{ border-bottom:6px solid var(--ink); }
+  .stage{ min-height:520px; display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center; padding:54px 64px; }
+  .btn{ display:inline-flex; align-items:center; gap:.5em; font-weight:700; text-decoration:none; cursor:pointer;
+    background:var(--ink); color:var(--paper); border:var(--border); border-radius:999px; padding:.65em 1.25em; box-shadow:var(--shadow); }
+  .btn--coral{ background:var(--coral); color:var(--ink); }
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-family:"Space Mono",monospace; font-weight:700;
+    font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; background:var(--lime); border:var(--border);
+    border-radius:999px; padding:.32em .85em; box-shadow:4px 4px 0 var(--ink); margin-bottom:20px; }
+  .lede{ font-size:1.1rem; max-width:32ch; margin:20px 0 26px; }
+
+  /* ===== A · MASCOT ===== */
+  .vA{ background:var(--paper); }
+  .vA h1{ font-family:"Fredoka",sans-serif; font-weight:700; font-size:clamp(2.4rem,4.4vw,4rem); line-height:1.02; margin:0; }
+  .vA h1 .pop{ color:var(--coral); }
+  .vA .mascot-wrap{ display:flex; justify-content:center; align-items:flex-end; }
+  .vA .speech{ font-family:"Fredoka",sans-serif; font-weight:600; background:#fff; border:var(--border); border-radius:16px;
+    padding:8px 14px; box-shadow:var(--shadow); position:relative; margin-bottom:10px; display:inline-block; }
+
+  /* ===== B · RISO ZINE ===== */
+  .vB{ position:relative; background:#F3 E9D8; background:#F4EAD6; overflow:hidden; }
+  .vB::after{ content:""; position:absolute; inset:0; pointer-events:none;
+    background-image:radial-gradient(var(--ink) 1px, transparent 1.4px); background-size:6px 6px; opacity:.10; }
+  .vB .ink2{ position:relative; }
+  .vB h1{ font-family:"Darker Grotesque",sans-serif; font-weight:900; font-size:clamp(3rem,6vw,5.6rem);
+    line-height:.86; letter-spacing:-0.01em; margin:0; text-transform:uppercase; color:var(--coral);
+    mix-blend-mode:multiply; }
+  .vB h1 .ghost{ position:absolute; left:3px; top:3px; color:var(--blue); mix-blend-mode:multiply; z-index:-1; }
+  .vB .stamp{ font-family:"Space Mono",monospace; font-weight:700; font-size:.72rem; letter-spacing:.1em;
+    text-transform:uppercase; border:2px dashed var(--ink); border-radius:8px; padding:.4em .7em; display:inline-block;
+    transform:rotate(-4deg); margin-bottom:18px; }
+  .vB .riso-card{ aspect-ratio:4/5; border:var(--border); border-radius:10px; box-shadow:var(--shadow);
+    background:repeating-linear-gradient(0deg,#FFB59E 0 10px,#FF9C82 10px 20px); position:relative;
+    display:flex; align-items:flex-end; }
+  .vB .riso-card .halftone{ position:absolute; inset:0; background-image:radial-gradient(var(--ink) 1.4px, transparent 1.6px);
+    background-size:8px 8px; opacity:.18; mix-blend-mode:multiply; border-radius:8px; }
+  .vB .riso-card .cap{ position:relative; font-family:"Space Mono",monospace; font-size:.72rem; padding:12px; }
+
+  /* ===== C · EXTRUDED TYPE-AS-PRODUCT ===== */
+  .vC{ background:var(--ink);
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0 29px, rgba(255,255,255,.06) 29px 30px),
+      repeating-linear-gradient(90deg, transparent 0 29px, rgba(255,255,255,.06) 29px 30px),
+      var(--ink); color:var(--paper); }
+  .vC .eyebrow{ background:var(--coral); color:var(--ink); }
+  .vC .lede{ color:rgba(255,246,233,.8); }
+  .vC h1{ font-family:"Anton",sans-serif; font-weight:400; font-size:clamp(3.2rem,7vw,6.5rem); line-height:.9;
+    text-transform:uppercase; letter-spacing:.01em; margin:0; color:var(--yellow);
+    text-shadow:
+      2px 2px 0 #c79a16, 4px 4px 0 #c79a16, 6px 6px 0 #c79a16,
+      8px 8px 0 var(--ink), 10px 10px 0 var(--ink), 12px 12px 0 rgba(0,0,0,.5); }
+  .vC h1 .coral{ color:var(--coral);
+    text-shadow:2px 2px 0 #b53620,4px 4px 0 #b53620,6px 6px 0 #b53620,8px 8px 0 var(--ink),10px 10px 0 var(--ink),12px 12px 0 rgba(0,0,0,.5); }
+  .vC .platecard{ aspect-ratio:1/1; border:3px solid var(--paper); border-radius:14px; display:flex; align-items:center;
+    justify-content:center; font-family:"Space Mono",monospace; font-size:.8rem; color:rgba(255,246,233,.6);
+    background:repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 10px, transparent 10px 20px); transform:rotate(-3deg);
+    box-shadow:10px 10px 0 rgba(0,0,0,.4); }
+
+  @media(max-width:820px){ .stage{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+  <!-- ================= A · MASCOT ================= -->
+  <div class="variant vA">
+    <div class="label-bar"><b>DIRECTION A</b> · MASCOT — "Filo" the extruder + Fredoka (rounded, friendly). Most ownable. Mascot = concept sketch.</div>
+    <div class="stage">
+      <div>
+        <span class="eyebrow">▤ Handmade · made-to-order</span>
+        <h1>Hi, I'm <span class="pop">Filo</span>.<br>Let's make something <span class="pop">weird.</span></h1>
+        <p class="lede">Original 3D prints for your desk, shelf &amp; soul — printed to order by a real human (and one friendly nozzle).</p>
+        <a class="btn btn--coral" href="#">Shop the drops →</a>
+      </div>
+      <div class="mascot-wrap">
+        <div style="text-align:center">
+          <div class="speech">layer by layer ✦</div>
+          <!-- Filo: friendly nozzle mascot (geometric concept sketch) -->
+          <svg width="240" height="280" viewBox="0 0 200 240" aria-label="Filo the nozzle mascot concept">
+            <!-- waving arm (behind) -->
+            <path d="M58 104 C36 96 30 78 44 66" fill="none" stroke="var(--coral)" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="44" cy="64" r="7" fill="var(--coral)"/>
+            <!-- other arm -->
+            <path d="M142 116 C162 120 166 134 156 146" fill="none" stroke="var(--coral)" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="156" cy="148" r="7" fill="var(--coral)"/>
+            <!-- cap -->
+            <rect x="70" y="34" width="60" height="22" rx="9" fill="var(--ink)"/>
+            <!-- body / nozzle -->
+            <path d="M60 56 L140 56 L120 150 Q100 162 80 150 Z" fill="var(--coral)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/>
+            <!-- tip -->
+            <path d="M82 150 L118 150 L108 170 L92 170 Z" fill="var(--ink)"/>
+            <!-- eyes -->
+            <ellipse cx="85" cy="92" rx="11" ry="13" fill="#fff" stroke="var(--ink)" stroke-width="3"/>
+            <ellipse cx="115" cy="92" rx="11" ry="13" fill="#fff" stroke="var(--ink)" stroke-width="3"/>
+            <circle cx="87" cy="95" r="5" fill="var(--ink)"/>
+            <circle cx="117" cy="95" r="5" fill="var(--ink)"/>
+            <!-- cheeks -->
+            <circle cx="72" cy="112" r="5" fill="var(--pink)"/>
+            <circle cx="128" cy="112" r="5" fill="var(--pink)"/>
+            <!-- smile -->
+            <path d="M88 118 Q100 130 112 118" fill="none" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+            <!-- filament squiggle leaving tip -->
+            <path d="M100 170 C100 188 132 188 132 204 C132 218 96 214 110 230" fill="none" stroke="var(--coral)" stroke-width="6" stroke-linecap="round"/>
+            <!-- build plate -->
+            <rect x="38" y="230" width="124" height="10" rx="5" fill="var(--ink)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= B · RISO ZINE ================= -->
+  <div class="variant vB">
+    <div class="label-bar"><b>DIRECTION B</b> · RISO-ZINE — Darker Grotesque + halftone grain + ink overprint. Most "handmade", least like a template.</div>
+    <div class="stage">
+      <div class="ink2">
+        <span class="stamp">★ Hand-printed in small batches</span>
+        <h1><span class="ghost" aria-hidden="true">Weird &amp;<br>wonderful<br>3D prints</span>Weird &amp;<br>wonderful<br>3D prints</h1>
+        <p class="lede" style="margin-top:24px;">Original designs, run like a zine — small drops, real ink, real layers.</p>
+        <a class="btn" href="#">Shop the drops →</a>
+      </div>
+      <div>
+        <div class="riso-card"><div class="halftone"></div><div class="cap">PRODUCT PHOTO<br>(riso / halftone treatment)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= C · EXTRUDED TYPE ================= -->
+  <div class="variant vC">
+    <div class="label-bar"><b>DIRECTION C</b> · TYPE-AS-PRODUCT — Anton, 3D-extruded headline on the build plate. Boldest &amp; most minimal.</div>
+    <div class="stage">
+      <div>
+        <span class="eyebrow">▤ Made to order</span>
+        <h1><span class="coral">3D</span> Prints<br>worth<br>showing off</h1>
+        <p class="lede">Bright, durable, one-of-a-kind objects — extruded layer by layer, just like this type.</p>
+        <a class="btn btn--coral" href="#">Shop the drops →</a>
+      </div>
+      <div>
+        <div class="platecard">PRODUCT PHOTO<br>on build plate</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

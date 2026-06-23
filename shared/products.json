@@ -1,0 +1,80 @@
+[
+  {
+    "id": "wobble-cat-planter",
+    "name": "Wobble Cat Planter",
+    "blurb": "A wide-eyed cat that holds your tiniest succulent.",
+    "priceCents": 2400,
+    "currency": "usd",
+    "badge": "BESTSELLER",
+    "material": "PLA",
+    "size": "12 cm",
+    "tint": "#FFD49A",
+    "colorChips": ["#FF5436", "#FFC93C", "#8CE563", "#2D5BFF", "#FF7DB0", "#18130F"],
+    "image": ""
+  },
+  {
+    "id": "hex-desk-organizer",
+    "name": "Hex Desk Organizer",
+    "blurb": "Modular honeycomb trays for pens, clips, and chaos.",
+    "priceCents": 3200,
+    "currency": "usd",
+    "badge": "NEW",
+    "material": "PLA · matte",
+    "size": "modular",
+    "tint": "#B3DBFF",
+    "colorChips": ["#2D5BFF", "#18130F", "#FFC93C"],
+    "image": ""
+  },
+  {
+    "id": "squish-ghost-keycap",
+    "name": "Squish Ghost Keycap",
+    "blurb": "A friendly little ghost for your MX-stem keyboard.",
+    "priceCents": 1400,
+    "currency": "usd",
+    "badge": "DROP 02",
+    "material": "resin",
+    "size": "MX stem",
+    "tint": "#FFC1DA",
+    "colorChips": ["#FF7DB0", "#FFF6E9", "#18130F"],
+    "image": ""
+  },
+  {
+    "id": "tentacle-cable-buddy",
+    "name": "Tentacle Cable Buddy",
+    "blurb": "A grippy little friend that keeps your cables from escaping.",
+    "priceCents": 1100,
+    "currency": "usd",
+    "badge": "★",
+    "material": "TPU · flexible",
+    "size": "4 cm",
+    "tint": "#C8F0AC",
+    "colorChips": ["#8CE563", "#FF5436", "#2D5BFF"],
+    "image": ""
+  },
+  {
+    "id": "retro-pixel-sign",
+    "name": "Retro Pixel Sign",
+    "blurb": "Say anything in chunky 8-bit letters. Pick your words.",
+    "priceCents": 2800,
+    "currency": "usd",
+    "badge": "CUSTOM-READY",
+    "material": "PLA",
+    "size": "18 cm",
+    "tint": "#FFE08A",
+    "colorChips": ["#FFC93C", "#FF5436", "#2D5BFF", "#8CE563"],
+    "image": ""
+  },
+  {
+    "id": "mini-mecha-figure",
+    "name": "Mini Mecha Figure",
+    "blurb": "A poseable desk robot with attitude and tiny joints.",
+    "priceCents": 3900,
+    "currency": "usd",
+    "badge": "LIMITED",
+    "material": "resin",
+    "size": "poseable",
+    "tint": "#D8C9FF",
+    "colorChips": ["#2D5BFF", "#18130F", "#FF5436"],
+    "image": ""
+  }
+]
