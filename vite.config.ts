@@ -1,9 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// Vite dev server proxies /api -> the Express API (server/index.js) so the
-// client can call the Stripe checkout endpoint with same-origin requests.
-export default defineConfig({
+// In production (GitHub Pages) the site is served from /macyprints/.
+// In dev it stays at the root and proxies /api -> the Express API.
+export default defineConfig(({ mode }) => ({
+  base: mode === "production" ? "/macyprints/" : "/",
   plugins: [react()],
   server: {
     port: 5173,
@@ -14,4 +15,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

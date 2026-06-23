@@ -12,9 +12,9 @@ export default function Nav() {
           MACYPRINTS
         </Link>
         <div className="flex gap-6 ml-auto items-center">
-          <a href="/#drops" className="no-underline font-medium hidden sm:block hover:text-coral">Shop</a>
-          <a href="/#custom" className="no-underline font-medium hidden sm:block hover:text-coral">Custom</a>
-          <a href="/#how" className="no-underline font-medium hidden sm:block hover:text-coral">How it works</a>
+          <a href="#drops" className="no-underline font-medium hidden sm:block hover:text-coral">Shop</a>
+          <a href="#custom" className="no-underline font-medium hidden sm:block hover:text-coral">Custom</a>
+          <a href="#how" className="no-underline font-medium hidden sm:block hover:text-coral">How it works</a>
           <button
             onClick={() => setOpen(true)}
             className="border-[3px] border-ink rounded-full px-3.5 py-1.5 font-mono font-bold text-[0.9rem] bg-sunny shadow-hard-sm cursor-pointer"

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../lib/cart";
 import { formatPrice } from "../data/products";
 import { Button } from "./Button";
@@ -8,12 +9,19 @@ export default function CartDrawer() {
   const { open, setOpen, items, lines, totalCents, setQty, clear } = useCart();
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   async function checkout() {
     setErr(null);
     setBusy(true);
     try {
-      await startCheckout(lines);
+      const result = await startCheckout(lines);
+      if ("demo" in result) {
+        setOpen(false);
+        navigate("/success?demo=1");
+      } else {
+        window.location.assign(result.url);
+      }
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Something went wrong.");
       setBusy(false);

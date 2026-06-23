@@ -22,7 +22,7 @@ export default function Home() {
               <span className="block font-mono text-[0.42em] font-semibold tracking-[0.02em] text-coral uppercase mb-1.5">
                 // Hi, I'm Filo —
               </span>
-              let's make something <span className="layered-text">weird</span> &amp; wonderful.
+              let's make something <span className="layered-text">fun</span> &amp; wonderful.
             </h1>
             <p className="text-[1.18rem] max-w-[33ch] my-6">
               Original 3D prints for your desk, shelf &amp; soul. Printed to order in bright, durable PLA — by a real human
