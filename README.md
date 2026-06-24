@@ -42,10 +42,53 @@ add-to-cart → checkout → success flow works without taking a real payment.
 > Prices are **server-authoritative**: the API looks up each cart line's amount
 > from `shared/products.json` by id, so the client can never alter prices.
 
-## Editing the catalog
+## Admin & inventory (Supabase)
 
-All products live in [`shared/products.json`](shared/products.json) — used by
-both the client (display) and the server (pricing). To add a print:
+The live catalog, pricing, stock, and product photos are stored in **Supabase**
+(an isolated `macyprints` schema). The storefront reads it directly in the
+browser; only the shop owner can edit.
+
+- **Admin page:** `/admin` — log in with a 6-digit code emailed to the owner.
+- **What you can do:** add/edit/delete listings, set price + **stock**, upload a
+  photo, toggle active/visible. Changes are live immediately.
+- **Inventory:** the shop shows "Only N left" / "Sold out" and the cart can't
+  exceed available stock. (Auto-decrement on a real paid order needs the Stripe
+  webhook — see below.)
+
+### One-time setup: enable the email login code
+
+Supabase only emails a magic *link* by default. To get the 6-digit **code** the
+admin login expects, edit the email template once:
+
+1. Supabase dashboard → **Authentication → Email Templates → Magic Link**
+2. Make sure the body includes the token, e.g.:
+   ```html
+   <h2>Your login code</h2>
+   <p>Enter this 6-digit code to sign in:</p>
+   <p style="font-size:24px;letter-spacing:4px"><strong>{{ .Token }}</strong></p>
+   <p>Or use this link: <a href="{{ .ConfirmationURL }}">Sign in</a></p>
+   ```
+3. Save. Now `/admin` → "Email me a login code" works.
+
+The owner email is set in [`src/lib/supabase.ts`](src/lib/supabase.ts) (`OWNER_EMAIL`)
+and enforced by a database RLS policy — only that account can write.
+
+### Env vars
+
+`.env` (local) and GitHub Actions **repository variables** (CI) hold:
+
+```
+VITE_SUPABASE_URL=...
+VITE_SUPABASE_ANON_KEY=...   # public, RLS-protected — safe in the browser
+```
+
+If these are unset, the app falls back to the local seed catalog
+([`shared/products.json`](shared/products.json)).
+
+## Editing the catalog without the admin (fallback seed)
+
+`shared/products.json` is the offline fallback used when Supabase is
+unreachable. The live source of truth is Supabase. The shape, for reference:
 
 ```jsonc
 {

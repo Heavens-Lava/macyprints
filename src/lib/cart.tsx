@@ -6,7 +6,8 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { PRODUCTS, type Product } from "../data/products";
+import { useCatalog } from "./catalog";
+import type { Product } from "../data/products";
 
 export interface CartLine {
   id: string;
@@ -16,8 +17,6 @@ export interface CartLine {
 interface CartCtx {
   lines: CartLine[];
   count: number;
-  totalCents: number;
-  items: { product: Product; qty: number }[];
   add: (id: string, qty?: number) => void;
   remove: (id: string) => void;
   setQty: (id: string, qty: number) => void;
@@ -62,23 +61,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setLines([]);
   }
 
-  const items = useMemo(
-    () =>
-      lines
-        .map((l) => {
-          const product = PRODUCTS.find((p) => p.id === l.id);
-          return product ? { product, qty: l.qty } : null;
-        })
-        .filter((x): x is { product: Product; qty: number } => x !== null),
-    [lines]
-  );
-  const count = items.reduce((n, i) => n + i.qty, 0);
-  const totalCents = items.reduce((n, i) => n + i.product.priceCents * i.qty, 0);
+  const count = lines.reduce((n, l) => n + l.qty, 0);
 
   return (
-    <Ctx.Provider
-      value={{ lines, items, count, totalCents, add, remove, setQty, clear, open, setOpen }}
-    >
+    <Ctx.Provider value={{ lines, count, add, remove, setQty, clear, open, setOpen }}>
       {children}
     </Ctx.Provider>
   );
@@ -88,4 +74,20 @@ export function useCart() {
   const ctx = useContext(Ctx);
   if (!ctx) throw new Error("useCart must be used within CartProvider");
   return ctx;
+}
+
+/** Resolves cart lines against the live catalog -> line items + subtotal. */
+export function useCartDetails(): { items: { product: Product; qty: number }[]; totalCents: number } {
+  const { lines } = useCart();
+  const { getProduct } = useCatalog();
+  return useMemo(() => {
+    const items = lines
+      .map((l) => {
+        const product = getProduct(l.id);
+        return product ? { product, qty: l.qty } : null;
+      })
+      .filter((x): x is { product: Product; qty: number } => x !== null);
+    const totalCents = items.reduce((n, i) => n + i.product.priceCents * i.qty, 0);
+    return { items, totalCents };
+  }, [lines, getProduct]);
 }

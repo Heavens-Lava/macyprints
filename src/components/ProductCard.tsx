@@ -17,6 +17,8 @@ function shade(hex: string, pct: number): string {
 
 export default function ProductCard({ product }: { product: Product }) {
   const { add } = useCart();
+  const soldOut = product.stockQty <= 0;
+  const low = !soldOut && product.stockQty <= 3;
   return (
     <article className="bg-white border-[3px] border-ink rounded-[18px] shadow-hard overflow-hidden flex flex-col transition-transform duration-100 hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-hard-lg">
       <div
@@ -28,9 +30,19 @@ export default function ProductCard({ product }: { product: Product }) {
         ) : (
           <span className="opacity-70">PRODUCT PHOTO</span>
         )}
-        {product.badge && (
+        {product.badge && !soldOut && (
           <span className="absolute top-3 left-3 bg-ink text-paper font-mono text-[0.68rem] px-2 py-1 rounded-full tracking-[0.06em]">
             {product.badge}
+          </span>
+        )}
+        {soldOut && (
+          <span className="absolute top-3 left-3 bg-ink text-paper font-mono text-[0.68rem] px-2 py-1 rounded-full tracking-[0.06em]">
+            SOLD OUT
+          </span>
+        )}
+        {low && (
+          <span className="absolute top-3 right-3 bg-coral text-ink border-2 border-ink font-mono text-[0.62rem] px-2 py-0.5 rounded-full tracking-[0.04em]">
+            Only {product.stockQty} left
           </span>
         )}
       </div>
@@ -47,8 +59,8 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
         <div className="flex items-center justify-between mt-auto pt-2.5">
           <span className="font-display font-bold text-[1.5rem]">{formatPrice(product.priceCents, product.currency)}</span>
-          <Button variant="coral" size="sm" onClick={() => add(product.id)}>
-            Add to cart
+          <Button variant="coral" size="sm" onClick={() => add(product.id)} disabled={soldOut} className="disabled:opacity-40 disabled:cursor-not-allowed">
+            {soldOut ? "Sold out" : "Add to cart"}
           </Button>
         </div>
       </div>

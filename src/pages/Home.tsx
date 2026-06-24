@@ -4,9 +4,10 @@ import BuildPlateHero from "../components/BuildPlateHero";
 import ProductCard from "../components/ProductCard";
 import Filo from "../components/Filo";
 import { Button, ButtonLink } from "../components/Button";
-import { PRODUCTS } from "../data/products";
+import { useCatalog } from "../lib/catalog";
 
 export default function Home() {
+  const { products, loading } = useCatalog();
   return (
     <>
       <Marquee />
@@ -51,10 +52,17 @@ export default function Home() {
             <ButtonLink href="#drops" variant="ghost" size="sm">View all →</ButtonLink>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[26px]">
-            {PRODUCTS.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
+            {loading
+              ? Array.from({ length: 6 }).map((_, i) => (
+                  <div key={i} className="border-[3px] border-ink rounded-[18px] bg-white shadow-hard h-[420px] animate-pulse" />
+                ))
+              : products.map((p) => <ProductCard key={p.id} product={p} />)}
           </div>
+          {!loading && products.length === 0 && (
+            <p className="font-mono text-sm opacity-70 text-center py-10">
+              No prints in stock right now — Filo is busy at the printer. Check back soon ✦
+            </p>
+          )}
         </div>
       </section>
 

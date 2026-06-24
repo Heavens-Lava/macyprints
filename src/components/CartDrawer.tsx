@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../lib/cart";
+import { useCart, useCartDetails } from "../lib/cart";
 import { formatPrice } from "../data/products";
 import { Button } from "./Button";
 import { startCheckout } from "../lib/checkout";
 
 export default function CartDrawer() {
-  const { open, setOpen, items, lines, totalCents, setQty, clear } = useCart();
+  const { open, setOpen, lines, setQty, clear } = useCart();
+  const { items, totalCents } = useCartDetails();
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -65,7 +66,14 @@ export default function CartDrawer() {
               <div className="flex items-center gap-2 font-mono">
                 <button onClick={() => setQty(product.id, qty - 1)} className="w-6 h-6 border-2 border-ink rounded-md leading-none">−</button>
                 <span className="w-5 text-center">{qty}</span>
-                <button onClick={() => setQty(product.id, qty + 1)} className="w-6 h-6 border-2 border-ink rounded-md leading-none">+</button>
+                <button
+                  onClick={() => setQty(product.id, Math.min(qty + 1, product.stockQty))}
+                  disabled={qty >= product.stockQty}
+                  className="w-6 h-6 border-2 border-ink rounded-md leading-none disabled:opacity-30"
+                  title={qty >= product.stockQty ? "No more in stock" : "Add one"}
+                >
+                  +
+                </button>
               </div>
             </div>
           ))}
