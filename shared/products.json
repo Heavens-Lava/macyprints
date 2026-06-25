@@ -39,16 +39,16 @@
     "image": ""
   },
   {
-    "id": "chunky-headphone-stand",
-    "name": "Chunky Headphone Stand",
-    "blurb": "A bold desk perch that keeps your headphones off the desk and on display.",
+    "id": "arc-headphone-stand",
+    "name": "Arc Headphone Stand",
+    "blurb": "A sculptural arch that shows your headphones off instead of hiding them. Minimal, modern, built for your setup.",
     "priceCents": 2600,
     "currency": "usd",
-    "badge": "DESK READY",
+    "badge": "NEW",
     "material": "PLA · matte",
-    "size": "28 cm",
-    "tint": "#B3DBFF",
-    "colorChips": ["#2D5BFF", "#18130F", "#FF5436"],
+    "size": "~18 cm tall",
+    "tint": "#D9DEE3",
+    "colorChips": ["#18130F", "#FF5436", "#DADADA"],
     "image": ""
   },
   {
