@@ -62,6 +62,18 @@ export async function fetchProducts(): Promise<Product[]> {
   return data.map(rowToProduct);
 }
 
+/**
+ * Resolves a product image to a usable URL.
+ * - Absolute (Supabase Storage / external / data URI) → used as-is.
+ * - Relative (e.g. "products/foo.png" hosted in /public) → prefixed with the
+ *   app base so it works under the /macyprints/ GitHub Pages path.
+ */
+export function resolveImage(image: string): string {
+  if (!image) return "";
+  if (/^(https?:|data:)/.test(image)) return image;
+  return import.meta.env.BASE_URL + image.replace(/^\//, "");
+}
+
 /** "$24" / "$24.50" from cents */
 export function formatPrice(cents: number, currency = "usd"): string {
   return new Intl.NumberFormat("en-US", {

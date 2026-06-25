@@ -1,5 +1,5 @@
 import { Button } from "./Button";
-import { formatPrice, type Product } from "../data/products";
+import { formatPrice, resolveImage, type Product } from "../data/products";
 import { useCart } from "../lib/cart";
 
 /** Build a horizontal "print layer" stripe pattern from a base tint. */
@@ -26,7 +26,7 @@ export default function ProductCard({ product }: { product: Product }) {
         style={product.image ? undefined : { background: layerBg(product.tint) }}
       >
         {product.image ? (
-          <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+          <img src={resolveImage(product.image)} alt={product.name} className="w-full h-full object-cover" />
         ) : (
           <span className="opacity-70">PRODUCT PHOTO</span>
         )}

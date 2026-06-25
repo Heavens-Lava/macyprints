@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase, supabaseEnabled, OWNER_EMAIL } from "../lib/supabase";
 import { useAuthUser } from "../lib/auth";
 import { useCatalog } from "../lib/catalog";
+import { resolveImage } from "../data/products";
 import { Button } from "../components/Button";
 import Filo from "../components/Filo";
 
@@ -297,7 +298,7 @@ function ProductEditor({
             className="aspect-square rounded-lg border-[3px] border-ink overflow-hidden flex items-center justify-center font-mono text-[0.6rem] text-center"
             style={f.image ? undefined : { background: f.tint }}
           >
-            {f.image ? <img src={f.image} alt="" className="w-full h-full object-cover" /> : "no photo"}
+            {f.image ? <img src={resolveImage(f.image)} alt="" className="w-full h-full object-cover" /> : "no photo"}
           </div>
           <label className="font-mono text-[0.65rem] underline cursor-pointer text-center">
             upload photo
